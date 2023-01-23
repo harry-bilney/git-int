@@ -26,6 +26,7 @@ app.post('/git/on-push', (req, res) => {
 		shell.exec(
 			'git clone https://github.com/harry-bilney/' + process.env.REPO + '.git'
 		)
+		shell.cd(app_path)
 		shell.exec('npm install')
 		shell.exec('pm2 start index.js --name ' + process.env.REPO)
 	}

@@ -12,11 +12,7 @@ const app_path = path.join(__dirname, 'app/', process.env.REPO)
 app.post('/git/on-push', (req, res) => {
 	if (fs.existsSync(app_path)) {
 		shell.cd(app_path)
-		shell.exec(
-			'git fetch https://github.com/harry-bilney/' +
-				process.env.REPO +
-				'.git -p'
-		)
+		shell.exec('git pull ' + process.env.REPO)
 	} else {
 		shell.cd(path.join(__dirname, 'app/'))
 		shell.exec(

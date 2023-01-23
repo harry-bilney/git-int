@@ -6,7 +6,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const app = express()
-const app_path = path.join(__dirname, process.env.APP)
+const app_path = path.join(__dirname, 'app/', process.env.REPO)
 
 app.post('/git/on-push', (req, res) => {
 	shell.cd(app_path)

@@ -1,13 +1,18 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import shell from 'shelljs'
+const express = require('express')
+const shell = require('shelljs')
+const path = require('path')
+const dotenv = require('dotenv')
 
 dotenv.config()
 
 const app = express()
+const app_path = path.join(__dirname, process.env.APP)
 
 app.post('/git/on-push', (req, res) => {
-	console.log(req.body)
+	shell.cd(app_path)
+	shell.exec(
+		'git clone https://github.com/harry-bilney/' + process.env.REPO + '.git'
+	)
 })
 
 app.listen(process.env.PORT || 3000, () => {

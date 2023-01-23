@@ -11,7 +11,7 @@ const app_path = path.join(__dirname, process.env.APP)
 app.post('/git/on-push', (req, res) => {
 	shell.cd(app_path)
 	shell.exec(
-		'git clone https://github.com/harry-bilney/' + process.env.REPO + '.git'
+		'git fetch https://github.com/harry-bilney/' + process.env.REPO + '.git -p'
 	)
 })
 
